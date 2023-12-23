@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text.RegularExpressions;
@@ -32,7 +32,7 @@ namespace Car
         }
         private void Choice(List<Auto> cars)
         {
-            Console.WriteLine(">> Mеню:\n> 1 - Создание нового автомобиля\n> 2 - Выбор автомобиля");
+            Console.WriteLine("\n>> Mеню:\n> 1 - Создание нового автомобиля\n> 2 - Выбор автомобиля");
             string? Choice = Console.ReadLine();
             switch (Choice)
             {
@@ -160,17 +160,20 @@ namespace Car
         {
             speed = 0;
             interval = 0;
-            Console.WriteLine($"\n> Вы остановились");
+            Console.WriteLine($"\n> Вы остановились\n");
             Console.WriteLine($"> Пробег автомобиля: {mileage} км");
             Console.WriteLine($"> Вы желаете продолжить или закончить путь ?\n1 - Продолжить\n2 - Закончить\n");
             string? vybor = Console.ReadLine();
             if (vybor == "1")
             {
-                Out();
+                Console.WriteLine($"> Номер авто: {number_Car}");
+                Console.WriteLine($"> Пробег автомобиля: {mileage} км");
                 Drive(cars);
             }
             else if (vybor == "2")
             {
+                Console.WriteLine($"> Номер авто: {number_Car}");
+                Console.WriteLine($"> Пробег автомобиля: {mileage} км");
                 Choice(cars);
             }
         }
@@ -186,7 +189,7 @@ namespace Car
                 if (currentamount_Gasoline > 0)//Проверяем наличие бензина
                 {
                     speed = 100;
-                    Drive(cars);               
+                    Drive(cars);
                     Choice(cars);
                 }
                 else if (currentamount_Gasoline <= 0)
@@ -221,7 +224,7 @@ namespace Car
                 var random1 = random.Next(0, cars.Count);
                 var random2 = random.Next(0, cars.Count);
 
-                for (int i = 0; i < cars.Count; i++) //Для одной машины
+                for (int i = 0; i < cars.Count; i++) //Для машины 1
                 {
                     for (int j = 0; j < cars.Count; j++) // Для машины 2
                     {
@@ -299,10 +302,14 @@ namespace Car
                 string? vybor = Console.ReadLine();
                 if (vybor == "1")
                 {
+                    Console.WriteLine($"> Номер авто: {number_Car}");
+                    Console.WriteLine($"> Пробег автомобиля: {mileage} км");
                     Path_Information(cars);
                 }
                 else if (vybor == "2")
                 {
+                    Console.WriteLine($"> Номер авто: {number_Car}");
+                    Console.WriteLine($"> Пробег автомобиля: {mileage} км");
                     Choice(cars);
                 }
             }
@@ -367,7 +374,7 @@ namespace Car
             Console.WriteLine($"\n|Номер авто: {number_Car}" +
                               $"\n|Объём бака: {volume_Tank}" +
                               $"\n|Уровень топлива: {currentamount_Gasoline}" +
-                              $"\n|Расход топлива: {consumption_Fuel}"+        
+                              $"\n|Расход топлива: {consumption_Fuel}" +
                               $"\n|Пробег автомобиля: {mileage}");// за все время, ведь пробег же
         }
         private void Menu(List<Auto> cars)//меню выбора
@@ -400,10 +407,11 @@ namespace Car
                     Choice(cars);
                     break;
                 case "6":
-                    Crash(cars);
+                    Out();
+                    Menu(cars);
                     break;
                 case "7":
-                    Out();
+                    Crash(cars);
                     break;
             }
         }
