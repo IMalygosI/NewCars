@@ -20,29 +20,13 @@ namespace Car
         private double koordinata_Ya;//Координата Y
         private double koordinata_Xb;//Координата X
         private double koordinata_Yb;//Координата Y
-        public static List<Auto> cars;
-        //private List<Auto> cars = new List<Auto>();
-        private string? Num_Car
+        public string? Num_Car
         {
             get { return number_Car; }
         }
-        private Auto()
+        public Auto(List<Auto> cars)
         {
-            Choice(cars);
-        }
-        private void Choice(List<Auto> cars)
-        {
-            Console.WriteLine("\n>> Mеню:\n> 1 - Создание нового автомобиля\n> 2 - Выбор автомобиля");
-            string? Choice = Console.ReadLine();
-            switch (Choice)
-            {
-                case "1":
-                    Info(cars);
-                    break;
-                case "2":
-                    СhangeAuto(cars);
-                    break;
-            }
+            Info(cars);
         }
         private void Info(List<Auto> cars) //Информация об автомобиле
         {
@@ -134,7 +118,7 @@ namespace Car
             this.mileage = 0;//пробег
             this.kilometers_Enough_Fuel = 0;//На сколько километров хватит топлива
             Console.WriteLine($"\n|Информация по машине|");
-            Out();
+            Menu(cars);
             Console.WriteLine("|Автомобиль занесен в базу, можете теперь его выбрать\n");
         }
         private void Path_Information(List<Auto> cars) // вводим информацию по пути 
@@ -174,7 +158,7 @@ namespace Car
             {
                 Console.WriteLine($"> Номер авто: {number_Car}");
                 Console.WriteLine($"> Пробег автомобиля: {mileage} км");
-                Choice(cars);
+                return;
             }
         }
         private void Razgon(List<Auto> cars) //Разгон
@@ -182,7 +166,7 @@ namespace Car
             if (distance == 0)
             {
                 Console.WriteLine("Цель поездки не задана!");
-                Choice(cars);
+                return;
             }
             else if (distance > 0)
             {
@@ -190,7 +174,7 @@ namespace Car
                 {
                     speed = 100;
                     Drive(cars);
-                    Choice(cars);
+                    return;
                 }
                 else if (currentamount_Gasoline <= 0)
                 {
@@ -242,7 +226,7 @@ namespace Car
                                 cars[j].interval = 0;
                                 cars[i].distance = 0;
                                 cars[j].distance = 0;
-                                Choice(cars);
+                                return;
                             }
                             else
                             {
@@ -310,7 +294,7 @@ namespace Car
                 {
                     Console.WriteLine($"> Номер авто: {number_Car}");
                     Console.WriteLine($"> Пробег автомобиля: {mileage} км");
-                    Choice(cars);
+                    return;
                 }
             }
             if (currentamount_Gasoline < 2 && interval < distance && interval != 0)
@@ -377,7 +361,7 @@ namespace Car
                               $"\n|Расход топлива: {consumption_Fuel}" +
                               $"\n|Пробег автомобиля: {mileage}");// за все время, ведь пробег же
         }
-        private void Menu(List<Auto> cars)//меню выбора
+        public void Menu(List<Auto> cars)//меню выбора
         {
             Console.WriteLine(">> Меню:" +
                              "\n> 1 - Задать цель поездки" +//Выбираем начало и конец координат пути, для определения дистанции пути
@@ -404,8 +388,7 @@ namespace Car
                     Zapravka(cars);
                     break;
                 case "5":
-                    Choice(cars);
-                    break;
+                    return;                    
                 case "6":
                     Out();
                     Menu(cars);
@@ -413,32 +396,6 @@ namespace Car
                 case "7":
                     Crash(cars);
                     break;
-            }
-        }
-        public static void СhangeAuto(List<Auto> cars)
-        {
-            Auto car;
-            while (true)
-            {
-                Console.WriteLine(">> Меню:\n1 - Создать автомобиль\n2 - Выбрать автомобиль");
-                string? vybor = Console.ReadLine();
-                if (vybor == "1")
-                {
-                    cars.Add(new Auto());
-                }
-                else if (vybor == "2")
-                {
-                    foreach (Auto auto in cars)
-                    {
-                        Console.WriteLine("Введите номер автомобиля: ");
-                        string? number = Console.ReadLine();
-                        if (number == auto.Num_Car)
-                        {
-                            car = auto;
-                            car.Menu(cars);
-                        }
-                    }
-                }
             }
         }
     }
