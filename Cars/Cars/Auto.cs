@@ -118,8 +118,10 @@ namespace Car
             this.mileage = 0;//пробег
             this.kilometers_Enough_Fuel = 0;//На сколько километров хватит топлива
             Console.WriteLine($"\n|Информация по машине|");
-            Menu(cars);
             Console.WriteLine("|Автомобиль занесен в базу, можете теперь его выбрать\n");
+            Menu(cars);
+            Console.WriteLine($"> Номер авто: {number_Car}");
+            Console.WriteLine($"> Пробег автомобиля: {mileage} км\n");
         }
         private void Path_Information(List<Auto> cars) // вводим информацию по пути 
         {
@@ -156,8 +158,6 @@ namespace Car
             }
             else if (vybor == "2")
             {
-                Console.WriteLine($"> Номер авто: {number_Car}");
-                Console.WriteLine($"> Пробег автомобиля: {mileage} км");
                 return;
             }
         }
@@ -166,7 +166,7 @@ namespace Car
             if (distance == 0)
             {
                 Console.WriteLine("Цель поездки не задана!");
-                return;
+                Menu(cars);
             }
             else if (distance > 0)
             {
