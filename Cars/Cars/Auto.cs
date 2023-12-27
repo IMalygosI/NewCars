@@ -276,26 +276,24 @@ namespace Car
             if (interval >= distance && distance != 0) //Для цели поездки
             {
                 double v = distance - (interval - 100);
-                currentamount_Gasoline = (v * consumption_Fuel) / 100;
+                //currentamount_Gasoline = (v * consumption_Fuel) / 100;
                 mileage += v - 100;
                 speed = 0;
                 distance = 0;
                 interval = 0;
                 Console.WriteLine("Вы выполнили цель поездки!");
-                Console.WriteLine($"> Желаете Задать новую цель или закончить путь ?\n1 - Новая цель\n2 - Закончить путь\n");
+                //Menu(cars);                
+                Console.WriteLine($"> Сделайте выбор \n1 - Вернутся в меню автомобиля\n2 - Закончить работу с автомобилем\n");
                 string? vybor = Console.ReadLine();
                 if (vybor == "1")
                 {
-                    Console.WriteLine($"> Номер авто: {number_Car}");
-                    Console.WriteLine($"> Пробег автомобиля: {mileage} км");
-                    Path_Information(cars);
+                    Menu(cars);
                 }
                 else if (vybor == "2")
                 {
-                    Console.WriteLine($"> Номер авто: {number_Car}");
-                    Console.WriteLine($"> Пробег автомобиля: {mileage} км");
                     return;
                 }
+
             }
             if (currentamount_Gasoline < 2 && interval < distance && interval != 0)
             {
@@ -388,7 +386,7 @@ namespace Car
                     Zapravka(cars);
                     break;
                 case "5":
-                    return;                    
+                    return;
                 case "6":
                     Out();
                     Menu(cars);
