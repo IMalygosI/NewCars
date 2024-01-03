@@ -219,7 +219,7 @@ namespace Car
                             {
                                 cars[i] = cars[random1];
                                 cars[j] = cars[random2];
-                                Console.WriteLine("Aвтомобили столкнулись!)");
+                                Console.WriteLine("АВАРИЯ!Aвтомобили столкнулись!");
                                 cars[i].speed = 0;
                                 cars[j].speed = 0;
                                 cars[i].interval = 0;
@@ -230,7 +230,7 @@ namespace Car
                             }
                             else
                             {
-                                Console.WriteLine("Аварии сегодня не будет(?\n");
+                                Console.WriteLine("Аварии сегодня не будет\n");
                                 Menu(cars);
                             }
                         }
